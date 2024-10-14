@@ -74,3 +74,22 @@ def on_print_screen(base64: str) -> None:
     file_path = compose_file_path(file_name)
     save_image(base64, file_path)
     emit('success', f'The image has been saved as {file_name}')
+
+
+# route _
+
+@app.get('/')
+def root() -> Response:
+    return {
+        'title': 'Images Folder',
+        'description': (
+            'A server for processing captures. '
+            'Upload base64-encoded images via WebSocket, '
+            'and the server saves them as PNG files.'
+        ),
+        'authors': [
+            'davidsantana06',
+            'DiovanaS'
+        ],
+        'repository': 'https://github.com/DiovanaS/images-folder'
+    }
