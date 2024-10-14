@@ -10,7 +10,7 @@ import colorama
 
 # parameter _
 
-SERVER_URL = 'ws://127.0.0.1:5000'
+SERVER_HOST = 'ws://127.0.0.1:5000'
 
 
 # service _
@@ -36,20 +36,25 @@ def handle_emission(
 # execution _
 
 if __name__ == '__main__':
+    # step 1: initialize colorama
     colorama.init()
 
+    # step 2: instantiate socket client
     socket_io = Client()
 
+    # step 3: define event handlers
     for event in ('success', 'error'):
         handler = lambda message: handle_emission(event, message)
         socket_io.on(event, handler)
 
-    socket_io.connect(SERVER_URL)
+    # step 4: connect to server
+    socket_io.connect(SERVER_HOST)
 
+    # step 5 onwards: listen for print screen press
     def on_press(key: Key) -> None:
         if key == Key.print_screen:
             base64 = print_screen()
             socket_io.emit('print_screen', base64)
-
+            
     with Listener(on_press) as listener:
         listener.join()
