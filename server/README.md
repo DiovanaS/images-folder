@@ -12,4 +12,6 @@ Next, start the server with:
 flask --app app run
 ```
 
-👉 Setup done? Return to [**main documentation**](./../README.md).
+#
+
+Setup done? Go to [**📄 Main Documentation**](./../README.md).

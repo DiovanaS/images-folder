@@ -20,7 +20,7 @@ The applications was developed using **Python 3.11**, and it is recommended to u
 git clone https://github.com/DiovanaS/images-folder
 ```
 
-After that, you must configure each application manually. Start with the [**server configuration**](./server/README.md). Then, proceed to the [**client configuration**](./client/README.md).
+After that, you must configure each application individually. Start with the [**🗄️ Server**](./server/README.md). Then, proceed to the [**💻 Client**](./client/README.md).
 
 ### ⚖️ License
 

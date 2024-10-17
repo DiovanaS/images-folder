@@ -12,4 +12,6 @@ Next, start the client with:
 python app.py
 ```
 
-👉 Setup done? Return to [**main documentation**](./../README.md).
+#
+
+Setup done? Go to [**📄 Main Documentation**](./../README.md).
