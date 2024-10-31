@@ -62,8 +62,8 @@ def compose_file_path(file_name: str) -> Path:
 
 def save_image(base64: str, file_path: Path) -> None:
     content = b64decode(base64)
-    with open(file_path, 'wb') as file:
-        file.write(content)
+    with open(file_path, 'wb') as buffer:
+        buffer.write(content)
 
 
 # event _
