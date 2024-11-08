@@ -1,6 +1,8 @@
 from base64 import b64decode
-from flask import Flask, Response
+from flask import Flask, send_file
 from flask_socketio import SocketIO, emit
+from http import HTTPStatus
+from os import path
 from pathlib import Path
 from uuid import uuid4
 
@@ -57,6 +59,7 @@ def generate_file_name() -> str:
 
 
 def compose_file_path(file_name: str) -> Path:
+    if not file_name.endswith('.png'): file_name += '.png'
     return UPLOADS_DIR / file_name
 
 
@@ -79,7 +82,7 @@ def on_print_screen(base64: str) -> None:
 # route _
 
 @app.get('/')
-def root() -> Response:
+def root():
     return {
         'title': 'Images Folder',
         'description': (
@@ -93,3 +96,14 @@ def root() -> Response:
         ],
         'repository': 'https://github.com/DiovanaS/images-folder'
     }
+
+
+@app.get('/<string:reference>')
+def get_image(reference: str):
+    file_path = compose_file_path(reference)
+    if not path.exists(file_path):
+        return (
+            {'message': 'Image not found.'}, 
+            HTTPStatus.NOT_FOUND
+        )
+    return send_file(file_path, as_attachment=True)
