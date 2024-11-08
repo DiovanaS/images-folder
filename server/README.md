@@ -11,7 +11,3 @@ Next, start the server with:
 ```bash
 flask --app app run
 ```
-
-#
-
-Setup done? Go to [**📄 Main Documentation**](./../README.md).

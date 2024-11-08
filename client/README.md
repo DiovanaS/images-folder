@@ -11,7 +11,3 @@ Next, start the client with:
 ```bash
 python app.py
 ```
-
-#
-
-Setup done? Go to [**📄 Main Documentation**](./../README.md).
