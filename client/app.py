@@ -2,7 +2,7 @@ from base64 import b64encode
 from colorama import Fore
 from io import BytesIO
 from PIL import ImageGrab
-from pynput.keyboard import Key, Listener
+from pynput.keyboard import Key, KeyCode, Listener
 from socketio import Client
 from typing import Literal
 import colorama
@@ -10,7 +10,7 @@ import colorama
 
 # parameter _
 
-SERVER_HOST = 'ws://127.0.0.1:5000'
+SERVER_HOST = 'wss://images-folder.onrender.com/'
 
 
 # service _
@@ -40,6 +40,8 @@ def handle_emission(
     print(f'{color}{message}')
 
 
+# execution _
+
 if __name__ == '__main__':
     # _ initialize colorama
     colorama.init(autoreset=True)
@@ -62,7 +64,7 @@ if __name__ == '__main__':
     socket_io.connect(SERVER_HOST)
 
     # _ define key events
-    def on_press(key: Key) -> None:
+    def on_press(key: KeyCode) -> None:
         # _ press print screen - send screenshot
         if key == Key.print_screen:
             base64 = print_screen()
@@ -73,5 +75,5 @@ if __name__ == '__main__':
             exit(0)
 
     # _ listen for keyboard key press
-    with Listener(on_press=on_press) as listener:
+    with Listener(on_press) as listener:
         listener.join()
